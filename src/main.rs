@@ -1,15 +1,12 @@
 mod push_to_notion;
+mod conf;
 
+use conf::{conf, SyncConfig};
 use std::path::{Path, PathBuf};
 use notify::{Watcher, RecursiveMode, Event, recommended_watcher};
 use notify::event::AccessKind::Close;
 use notify::event::AccessMode::Write;
 use notify::EventKind::Access;
-
-struct SyncConfig {
-    extensions: Vec<String>,
-    path: String,
-}
 
 fn main() {
     let mut watcher = notify::recommended_watcher(|res| {
@@ -24,13 +21,6 @@ fn main() {
     loop {
         // TODO EVERY X MINUTES PULL NOTION FILES
     }
-}
-
-fn conf() -> SyncConfig {
-    return SyncConfig {
-        path: String::from("/home/daan/notes"),
-        extensions: Vec::from([String::from("md")]),
-    };
 }
 
 fn relevant_paths(e: Event) -> Option<Vec<PathBuf>> {
