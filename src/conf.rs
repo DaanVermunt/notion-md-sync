@@ -39,7 +39,6 @@ pub fn conf() -> SyncConfig {
             },
             _ => {},
         }
-
     }
 
     if conf.extensions.len() == 0 {
